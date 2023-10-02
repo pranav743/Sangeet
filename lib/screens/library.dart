@@ -1,6 +1,9 @@
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
+import "package:just_audio/just_audio.dart";
 import "package:on_audio_query/on_audio_query.dart";
+import 'package:fluttertoast/fluttertoast.dart';
+
 
 
 class Library extends StatefulWidget {
@@ -14,6 +17,7 @@ class Library extends StatefulWidget {
 class _LibraryState extends State<Library> {
   
   final OnAudioQuery _audioQuery = OnAudioQuery();
+  final AudioPlayer _player = AudioPlayer();
 
   @override
   void initState() {
@@ -23,6 +27,11 @@ class _LibraryState extends State<Library> {
     }
   }
 
+  @override
+  void dispose(){
+    _player.dispose();
+    super.dispose();
+  }
   void requestStoragePermissions() async {
   if (!kIsWeb) {
     bool permission_status = await _audioQuery.permissionsStatus();
@@ -33,21 +42,6 @@ class _LibraryState extends State<Library> {
     }
   }
 
-
-
-  Widget createAppBar() {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      title: Text("Your Library"),
-      actions: [
-        Padding(
-          padding: EdgeInsets.only(right: 15.0),
-          child: Icon(Icons.library_music_outlined),
-        ),
-      ],
-    );
-  }
 
   @override
 Widget build(BuildContext context) {
@@ -116,6 +110,22 @@ Widget build(BuildContext context) {
                       id: item.data![index].id,
                       type: ArtworkType.AUDIO,
                     ),
+                    onTap: () async {
+                        Fluttertoast.showToast(
+                          msg: "Playing: " + item.data![index].title,
+                          toastLength: Toast.LENGTH_LONG, // Duration for how long the toast appears (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
+                          gravity: ToastGravity.BOTTOM, // Position of the toast (TOP, CENTER, BOTTOM)
+                          timeInSecForIosWeb: 1, // Duration for iOS web
+                          backgroundColor: Colors.black.withOpacity(0.7), // Background color
+                          textColor: Colors.white, // Text color
+                          fontSize: 16.0, // Font size
+                          // You can further customize the appearance with other properties like fontSize, radius, and more.
+                        );
+
+                        String? uri = item.data![index].uri;
+                        await _player.setAudioSource(AudioSource.uri(Uri.parse(uri!)));
+                        await _player.play();
+                    },
                   ),
                 ),
               );
