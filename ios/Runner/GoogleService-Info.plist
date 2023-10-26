@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyB5QJpX5WYT4mt91l-TxLT5h_A5Rchk0Po</string>
+	<key>GCM_SENDER_ID</key>
+	<string>649352763169</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.musicplayer2</string>
+	<key>PROJECT_ID</key>
+	<string>flutter-authentication-dbbcd</string>
+	<key>STORAGE_BUCKET</key>
+	<string>flutter-authentication-dbbcd.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:649352763169:ios:66ed408696d809eabc9060</string>
+</dict>
+</plist>

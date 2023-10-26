@@ -1,8 +1,10 @@
 import 'package:musicplayer2/models/Category.dart';
 import "package:flutter/material.dart";
+import 'package:musicplayer2/screens/starting_page.dart';
 import 'package:musicplayer2/services/Category_operations.dart';
 import 'package:musicplayer2/services/Music_operations.dart';
 import 'package:musicplayer2/models/Music.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class MyHome extends StatelessWidget {
 
@@ -106,7 +108,7 @@ class MyHome extends StatelessWidget {
       actions: [
         Padding(
           padding: EdgeInsets.only(right: 15.0),
-          child: Icon(Icons.settings),
+          child: MyDropdownMenu(),
         ),
       ],
     );
@@ -157,7 +159,7 @@ Widget build(BuildContext context) {
           actions: [
             Padding(
               padding: EdgeInsets.only(right: 15.0),
-              child: Icon(Icons.settings),
+              child: MyDropdownMenu(),
             ),
           ],
         ),
@@ -192,3 +194,50 @@ Widget build(BuildContext context) {
   );
 }
 }
+
+
+class MyDropdownMenu extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton<String>(
+      color: Colors.black,
+      itemBuilder: (context) {
+        return <PopupMenuEntry<String>>[
+          PopupMenuItem<String>(
+            value: 'option1',
+            child: Text('My Profile'),
+            textStyle: TextStyle(color: Colors.white),
+            
+          ),
+          PopupMenuItem<String>(
+            value: 'option2',
+            child: Text('Logout'),
+            textStyle: TextStyle(color: Colors.white),
+            onTap: () async {
+                try {
+                  await FirebaseAuth.instance.signOut();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context)=> const StartingPage()));
+                } catch (e) {
+                  print("Error during logout: $e");
+                }
+              },
+          ),
+        ];
+      },
+      onSelected: (value) {
+        // Handle the selected option here
+        switch (value) {
+          case 'option1':
+            // Handle Option 1 selection
+            break;
+          case 'option2':
+            // Handle Option 2 selection
+            break;
+        }
+      },
+      child: Icon(Icons.more_vert), // Icon that triggers the dropdown menu
+    );
+  }
+}
+
