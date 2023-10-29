@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '649352763169',
     projectId: 'flutter-authentication-dbbcd',
     authDomain: 'flutter-authentication-dbbcd.firebaseapp.com',
+    databaseURL: 'https://flutter-authentication-dbbcd-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'flutter-authentication-dbbcd.appspot.com',
     measurementId: 'G-RX7FK429MZ',
   );
@@ -59,6 +60,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '649352763169',
     projectId: 'flutter-authentication-dbbcd',
     storageBucket: 'flutter-authentication-dbbcd.appspot.com',
+    databaseURL: 'https://flutter-authentication-dbbcd-default-rtdb.asia-southeast1.firebasedatabase.app',
+
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -68,6 +71,8 @@ class DefaultFirebaseOptions {
     projectId: 'flutter-authentication-dbbcd',
     storageBucket: 'flutter-authentication-dbbcd.appspot.com',
     iosBundleId: 'com.example.musicplayer2',
+    databaseURL: 'https://flutter-authentication-dbbcd-default-rtdb.asia-southeast1.firebasedatabase.app',
+
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -77,5 +82,7 @@ class DefaultFirebaseOptions {
     projectId: 'flutter-authentication-dbbcd',
     storageBucket: 'flutter-authentication-dbbcd.appspot.com',
     iosBundleId: 'com.example.musicplayer2.RunnerTests',
+    databaseURL: 'https://flutter-authentication-dbbcd-default-rtdb.asia-southeast1.firebasedatabase.app',
+
   );
 }
