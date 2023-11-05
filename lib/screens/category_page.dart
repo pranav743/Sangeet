@@ -5,9 +5,13 @@ import 'package:firebase_database/firebase_database.dart';
 class CategoryPage extends StatefulWidget {
   final String categoryName;
   final String folderName; // Define a variable to hold the received argument
+  final String categoryImage;
 
-
-  const CategoryPage({Key? key, required this.categoryName, required this.folderName})
+  const CategoryPage(
+      {Key? key,
+      required this.categoryName,
+      required this.folderName,
+      required this.categoryImage})
       : super(key: key); // Receive the argument
 
   @override
@@ -15,13 +19,13 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends State<CategoryPage> {
-
   late DatabaseReference ref; // Declare the reference variable
 
   @override
   void initState() {
     super.initState();
-    ref = FirebaseDatabase.instance.ref("Songs/" + widget.folderName); // Access widget property within initState
+    ref = FirebaseDatabase.instance.ref("Songs/" +
+        widget.folderName); // Access widget property within initState
   }
 
   Widget createAppBar() {
@@ -142,23 +146,45 @@ class _CategoryPageState extends State<CategoryPage> {
             child: Column(
               children: [
                 createAppBar(),
-                SizedBox(height: 25,),
-                Center( 
+                SizedBox(
+                  height: 25,
+                ),
+                Center(
                   child: Container(
-                  padding: EdgeInsets.all(15),
-                  height: 300,
-                  width: MediaQuery.of(context).size.width - 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20), // Set border radius to 15
-                    image: DecorationImage(
-                      fit: BoxFit.cover, // Ensure the image covers the entire container
-                      image: AssetImage('assets/Hindi.webp'), // Replace with your image path
+                    padding: EdgeInsets.all(15),
+                    height: 300,
+                    width: MediaQuery.of(context).size.width - 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.network(
+                        widget.categoryImage, // Replace this URL with your image's URL
+                        fit: BoxFit
+                            .cover, // Adjust the fit of the image within the container
+                        loadingBuilder: (BuildContext context, Widget child,
+                            ImageChunkEvent? loadingProgress) {
+                          if (loadingProgress == null) {
+                            return child; // Return the image if it's fully loaded
+                          } else {
+                            return Center(
+                                child:
+                                    CircularProgressIndicator()); // Show a loading indicator
+                          }
+                        },
+                        errorBuilder: (BuildContext context, Object exception,
+                            StackTrace? stackTrace) {
+                          return Text(
+                              'Failed to load the image'); // Show this text if the image fails to load
+                        },
+                      ),
                     ),
                   ),
-                  alignment: Alignment.center, // Center the image within the container
                 ),
+                SizedBox(
+                  height: 30,
                 ),
-                SizedBox(height: 30,),
                 Expanded(
                   child: FirebaseAnimatedList(
                     query: ref,

@@ -15,7 +15,7 @@ class MyHome extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => CategoryPage(categoryName: category.name, folderName: category.folder)),
+            MaterialPageRoute(builder: (context) => CategoryPage(categoryName: category.name, folderName: category.folder, categoryImage: category.categoryImage)),
           );
         },
         child: Container(

@@ -17,7 +17,7 @@ class _LibraryState extends State<Library> {
   final OnAudioQuery _audioQuery = OnAudioQuery();
   final AudioPlayer _player = AudioPlayer();
   bool isPlaying = false;
-  String song_title = "";
+  String song_title = "Not Playing";
   String song_uri = "";
   List<SongModel> songs = [];
   int currentIndex = 0;
@@ -328,7 +328,7 @@ class _LibraryState extends State<Library> {
                   ),
                 ),
                 height: 90, // Adjust the height calculation
-                // Customize the color as needed
+             
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),

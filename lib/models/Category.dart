@@ -2,5 +2,6 @@ class Category{
   String name;
   String imageUrl;
   String folder;
-  Category(this.name, this.imageUrl, this.folder);
+  String  categoryImage;
+  Category(this.name, this.imageUrl, this.folder, this.categoryImage);
 }
